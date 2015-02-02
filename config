@@ -14,13 +14,13 @@
 
 set $mod Mod4
 
-set $WS1 term
-set $WS2 web
-set $WS3 media
-set $WS4 chat
-set $WS5 games
-set $WS6 projects
-set $WS7 misc
+set $WS1 "1: www"
+set $WS2 "2: term"
+set $WS3 "3: media"
+set $WS4 "4: im"
+set $WS5 "5: games"
+set $WS6 "6: projects"
+set $WS7 "7: misc"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -32,10 +32,11 @@ exec --no-startup-id dunst
 exec --no-startup-id conky
 exec --no-startup-id steam -silent
 exec --no-startup-id unclutter -noevents
-exec --no-startup-id i3-msg "workspace $WS1; exec urxvtc"
-exec --no-startup-id i3-msg "workspace $WS2; exec chromium; layout tabbed"
+exec --no-startup-id i3-msg "workspace $WS2; exec urxvtc"
+exec --no-startup-id i3-msg "workspace $WS1; exec chromium; layout tabbed"
 exec --no-startup-id i3-msg "workspace $WS3; exec spotify"
 exec --no-startup-id i3-msg "workspace $WS3; exec CopyAgent"
+#exec --no-startup-id i3-msg "workspace $WS5; exec steam"
 
 
 # Assign window colors and controls ------------------------------------
@@ -44,19 +45,19 @@ hide_edge_borders both
 
 # Assign colors
 # Class                 Border  Bg      Text
-client.focused          #6092BE #6092BE #FFFFFF
+client.focused          #007fbf #007fbf #ffffff
 client.focused_inactive #8AB4DA #8AB4DA #B9D5EF
-client.unfocused        #B9D5EF #B9D5EF #3E719F
-client.urgent           #550000 #801515 #D46A6A
+client.unfocused        #666666 #666666 #ffffff
+client.urgent           #aa0000 #990000 #ffffff
 client.background       #3E719F
 
 # Assign windows to their respective workspaces
-assign [class="Chromium|Dwb|Firefox|Uzbl-core"] web
-assign [class="MPlayer"] media
-assign [class="^Minecraft .*" instance="^Minecraft .*"] games
-assign [class="mumble"] chat
-assign [class="kicad"] projects
-assign [class="net-minecraft-bootstrap-Bootstrap|Steam"] games
+assign [class="Chromium|Dwb|Firefox|Uzbl-core"] $WS1
+assign [class="MPlayer"] $WS3
+assign [class="^Minecraft .*" instance="^Minecraft .*"] $WS5
+assign [class="mumble"] $WS4
+assign [class="kicad"] $WS6
+assign [class="net-minecraft-bootstrap-Bootstrap|Steam"] $WS5
 
 # Assign window changes
 for_window [class="feh|MPlayer|Steam"] floating enable
@@ -212,20 +213,20 @@ bindsym $mod+p mode "resize"
 # finds out, if available)
 
 bar {
-    font           pango:Terminus, Icons 8
-    status_command python ~/.i3/i3pystatus/config.py
-    position       top
-    tray_output    primary
+  font           pango:Terminus, Icons 8
+  status_command python ~/.i3/i3pystatus/config.py
+  position       top
+  tray_output    primary
 
-    colors {
-        background #3E719F
-        statusline #E8F2FC
-        separator  #B9D5EF
+  colors {
+    background #000000
+    statusline #ffffff
+    separator #666666
 
-        #Class             Border  Bg      Text
-        focused_workspace  #153F60 #285577 #FFFFFF
-        active_workspace   #688CA7 #416B8B #FFFFFF
-        inactive_workspace #688CA7 #416B8B #FFFFFF
-        urgent_workspace   #550000 #801515 #D46A6A
-    }
+    #Class             Border  Bg      Text
+    focused_workspace  #008fff #007fff #ffffff
+    active_workspace   #333333 #5f676a #ffffff
+    inactive_workspace #333333 #222222 #888888
+    urgent_workspace   #aa0000 #990000 #ffffff
+  }
 }
