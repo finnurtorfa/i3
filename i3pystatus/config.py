@@ -9,6 +9,7 @@ import subprocess
 
 from i3pystatus import Status
 from i3pystatus.mail import maildir
+from i3pystatus.mail import Mail
 
 status = Status(standalone=True)
 
@@ -23,7 +24,7 @@ status.register("alsa",
 
 # Battery status
 status.register("battery",
-    format="{status} {consumption:.2f}W {percentage:.2f}% [{percentage_design:.2f}%] {remaining:%E%hh:%Mm}",
+    format="{status} {consumption:.2f}W {percentage:.2f}% {remaining:%E%hh:%Mm}",
     alert=True,
     alert_percentage=5,
     status={
@@ -38,7 +39,7 @@ status.register("temp",
 
 # Average load
 status.register("cpu_usage",
-    format = "CPU0: {usage_cpu0}, CPU1: {usage_cpu1}, CPU2: {usage_cpu2}, CPU3: {usage_cpu3}",
+    format = "CPU: {usage}",
     format_all = "CPU{core}: {usage}", )
 
 # MPD status
@@ -58,8 +59,7 @@ status.register("mail",
     email_client = "urxvtc -e mutt",
     backends = [
         maildir.MaildirMail(
-            directory = "/home/fstorfa/.mail/inbox"
+            directory = "/home/fstorfa/.mail/inbox/INBOX"
         )
     ])
-
 status.run()
