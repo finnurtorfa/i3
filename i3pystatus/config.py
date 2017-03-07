@@ -43,8 +43,8 @@ status.register("cpu_usage",
     format_all = "CPU{core}: {usage}", )
 
 # MPD status
-status.register("mpd",
-    format = "[ {status} {artist} - {title} ]",
+status.register("spotify",
+    format = "[ {artist} - {title} ]",
     status = {
       "pause": "▷",
       "play": "▶",
