@@ -32,10 +32,9 @@ exec --no-startup-id dunst
 exec --no-startup-id conky
 exec --no-startup-id steam -silent
 exec --no-startup-id unclutter -noevents
-exec --no-startup-id i3-msg "workspace $WS2; exec urxvtc"
 exec --no-startup-id i3-msg "workspace $WS1; exec chromium; layout tabbed"
+exec --no-startup-id i3-msg "workspace $WS2; exec urxvtc"
 exec --no-startup-id i3-msg "workspace $WS3; exec spotify"
-exec --no-startup-id i3-msg "workspace $WS3; exec CopyAgent"
 exec --no-startup-id i3-msg "workspace $WS4; exec urxvtc -e weechat-curses; layout tabbed"
 exec --no-startup-id i3-msg "workspace $WS4; exec urxvtc -e centerim; layout tabbed"
 
@@ -133,6 +132,10 @@ bindsym $mod+Shift+l move right
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move container to workspace next
 bindsym $mod+Shift+Right move container to workspace prev
+
+# Move whole workspaces across monitors
+bindsym $mod+Control+Left move workspace to output left
+bindsym $mod+Control+Right move workspace to output right
 
 # split in horizontal orientation
 bindsym $mod+d split h
